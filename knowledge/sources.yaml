@@ -1,0 +1,47 @@
+# Master metadata for knowledge sources
+# Populate with one entry per source (PDF or webpage snapshot).
+
+sources:
+  - id: mci_selfcare_pdf
+    type: pdf
+    filename: mci_selfcare.pdf
+    title: "MCI Self-Care Guide (placeholder)"
+    institution: "TBD"
+    url: ""
+    fetched_at: "2026-06-23"
+    version: "1.0"
+    review_status: pending
+    notes: "Place original PDF file under knowledge/sources/"
+
+  - id: mci_selfcare_web
+    type: webpage
+    filename: mci_selfcare_webpage.html
+    title: "MCI Self-Care Webpage (placeholder)"
+    institution: "TBD"
+    url: "https://example.org/mci-selfcare"
+    fetched_at: "2026-06-23"
+    version: "1.0"
+    review_status: pending
+    notes: "Save HTML snapshot under knowledge/sources/"
+
+  - id: drug_info_pdf
+    type: pdf
+    filename: drug_info.pdf
+    title: "Drug Info (placeholder)"
+    institution: "TBD"
+    url: ""
+    fetched_at: "2026-06-23"
+    version: "1.0"
+    review_status: pending
+    notes: "Place original PDF file under knowledge/sources/"
+
+  - id: drug_info_web
+    type: webpage
+    filename: drug_info_webpage.html
+    title: "Drug Info Webpage (placeholder)"
+    institution: "TBD"
+    url: "https://example.org/drug-info"
+    fetched_at: "2026-06-23"
+    version: "1.0"
+    review_status: pending
+    notes: "Save HTML snapshot under knowledge/sources/"
