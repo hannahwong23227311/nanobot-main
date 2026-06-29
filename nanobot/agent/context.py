@@ -57,9 +57,18 @@ class ContextBuilder:
     _MAX_HISTORY_TOKENS = 8_000  # hard cap on recent history section size (tokens)
     _RUNTIME_CONTEXT_END = "[/Runtime Context]"
 
-    def __init__(self, workspace: Path, timezone: str | None = None, disabled_skills: list[str] | None = None):
+    def __init__(
+        self,
+        workspace: Path,
+        timezone: str | None = None,
+        disabled_skills: list[str] | None = None,
+        bot_name: str | None = None,
+        system_prompt: str | None = None,
+    ):
         self.workspace = workspace
         self.timezone = timezone
+        self.bot_name = bot_name or "nanobot"
+        self.system_prompt = system_prompt
         self.memory = MemoryStore(workspace)
         self.skills = SkillsLoader(workspace, disabled_skills=set(disabled_skills) if disabled_skills else None)
 
@@ -75,7 +84,10 @@ class ContextBuilder:
     ) -> str:
         """Build the system prompt from identity, bootstrap files, memory, and skills."""
         root = workspace or self.workspace
-        parts = [self._get_identity(channel=channel, workspace=root)]
+        parts: list[str] = []
+        if self.system_prompt:
+            parts.append(self.system_prompt.strip())
+        parts.append(self._get_identity(channel=channel, workspace=root))
 
         bootstrap = self._load_bootstrap_files(root)
         if bootstrap:
@@ -129,6 +141,7 @@ class ContextBuilder:
             runtime=runtime,
             platform_policy=render_template("agent/platform_policy.md", system=system),
             channel=channel or "",
+            bot_name=self.bot_name,
         )
 
     @staticmethod

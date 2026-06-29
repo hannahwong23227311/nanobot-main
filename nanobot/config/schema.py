@@ -102,6 +102,11 @@ class ModelPresetConfig(Base):
     max_tokens: int = 8192
     context_window_tokens: int = 200_000
     temperature: float = 0.1
+    system_prompt: str | None = Field(
+        default=None,
+        validation_alias=AliasChoices("systemPrompt"),
+        serialization_alias="systemPrompt",
+    )
     reasoning_effort: str | None = None
 
     def to_generation_settings(self) -> Any:
@@ -126,6 +131,11 @@ class AgentDefaults(Base):
     context_window_tokens: int = 200_000
     context_block_limit: int | None = None
     temperature: float = 0.1
+    system_prompt: str | None = Field(
+        default=None,
+        validation_alias=AliasChoices("systemPrompt"),
+        serialization_alias="systemPrompt",
+    )
     fallback_models: list[FallbackCandidate] = Field(default_factory=list)
     max_tool_iterations: int = 200
     max_concurrent_subagents: int = Field(default=1, ge=1)

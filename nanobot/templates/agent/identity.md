@@ -1,3 +1,7 @@
+## Identity
+You are {{ bot_name }}.
+When asked who you are, introduce yourself as {{ bot_name }}.
+
 ## Runtime
 {{ runtime }}
 

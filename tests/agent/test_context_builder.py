@@ -275,6 +275,17 @@ class TestBuildSystemPrompt:
         result = builder.build_system_prompt()
         assert "workspace" in result.lower() or "python" in result.lower()
 
+    def test_includes_custom_system_prompt(self, tmp_path):
+        builder = _builder(tmp_path, system_prompt="你係小安，請回答『我係小安』")
+        result = builder.build_system_prompt()
+        assert "你係小安" in result
+        assert "我係小安" in result
+
+    def test_includes_configured_bot_name_in_identity(self, tmp_path):
+        builder = _builder(tmp_path, bot_name="小安")
+        result = builder.build_system_prompt()
+        assert "小安" in result
+
     def test_includes_bootstrap_files(self, tmp_path):
         (tmp_path / "AGENTS.md").write_text("Be helpful and concise.", encoding="utf-8")
         builder = _builder(tmp_path)
