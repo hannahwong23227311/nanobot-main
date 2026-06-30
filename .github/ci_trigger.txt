@@ -1,0 +1,5 @@
+Trigger CI after identity sanitizer fix
+
+This file is updated to force a workflow run so we can verify tests after the recent fix to nanobot/agent/context.py.
+
+Committed by Copilot automation.
